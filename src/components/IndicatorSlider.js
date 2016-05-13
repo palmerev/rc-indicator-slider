@@ -16,13 +16,13 @@ export default class IndicatorSlider extends React.Component {
     for(let i = 0; i < numSections; i++) {
       let style = { backgroundColor: colors[i] }
       let uniqueClass = 'rc-slider-section-' + i;
-      let classes = classnames({ 'rc-slider-section': true, uniqueClass })
+      let classes = classnames({ 'rc-indicator-slider-section': true, uniqueClass })
       sections.push(
         <span key={i} className={classes} style={style}></span>
       )
     }
     return (
-      <Slider tipFormatter={null} value={this.props.defaultValue}>
+      <Slider prefixCls="rc-indicator-slider" tipFormatter={null} value={this.props.value}>
         {sections}
       </Slider>
     )
@@ -32,11 +32,11 @@ export default class IndicatorSlider extends React.Component {
 IndicatorSlider.propTypes = {
   sections: PropTypes.number,
   colors: PropTypes.arrayOf(PropTypes.string),
-  defaultValue: PropTypes.number
+  value: PropTypes.number
 }
 
 IndicatorSlider.defaultProps = {
   sections: 4,
   colors: ["#333", "#666", "#999", "#CCC"],
-  defaultValue: 25
+  value: 25
 }

@@ -1,5 +1,5 @@
-$prefixClass: rc-slider;
-
+$sliderPrefixClass: rc-slider;
+$indicatorPrefixClass: rc-indicator-slider;
 $disabledColor: #ccc;
 $border-radius-base: 6px;
 $primary-color: #2db7f5;
@@ -10,7 +10,8 @@ $tooltip-distance: $tooltip-arrow-width+4;
 $tooltip-arrow-color: $tooltip-bg;
 $ease-out-quint      : cubic-bezier(0.23, 1, 0.32, 1);
 $ease-in-quint       : cubic-bezier(0.755, 0.05, 0.855, 0.06);
-$slider-height: 25px;
+$slider-height: 5px;
+$indicator-slider-height: 25px;
 $caret-base: 8px;
 $caret-side-ratio: 1.2;
 $lightYellow: #EEE597;
@@ -29,50 +30,114 @@ $darkOrange: #B5441D;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0); //  remove tap highlight color for mobile safari
   }
 }
-
-.#{$prefixClass} {
+.slider-wrapper {
+  width: 300px;
+  margin: 0 auto;
+}
+.indicator-wrapper {
+  margin: 0 auto;
+  width: 600px;
+}
+.#{$indicatorPrefixClass},
+.#{$sliderPrefixClass} {
   position: relative;
-  height: $slider-height;
   width: 100%;
   border-radius: $border-radius-base;
-  background: transparent;
 
   @include borderBox();
-
-  &-section {
-    display: inline-block;
-    height: 100%;
-    width: 25%;
-    &-1 {
-      background-color: $darkOrange;
-    }
-    &-2 {
-      background-color: $lightOrange;
-    }
-
-    &-3 {
-      background-color: $darkYellow;
-    }
-
-    &-4 {
-      background-color: $lightYellow;
-    }
-  }
 
   &-track {
     position: absolute;
     left: 0;
-    height: $slider-height + $caret-base;
     border-radius: $border-radius-base;
     background: transparent;
     z-index: 1;
   }
+
+  &-mark {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    font-size: 12px;
+    z-index: 3;
+  }
+
+  &-mark-text {
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    color: #999;
+
+    &-active {
+      color: #666;
+    }
+  }
+
+  &-step {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 1;
+  }
+
+  &-dot {
+    position: absolute;
+    bottom: -2px;
+    margin-left: -4px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #e9e9e9;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    // vertical-align: middle;
+    &:first-child {
+      margin-left: -4px;
+    }
+    &:last-child {
+      margin-left: -4px;
+    }
+    &-active {
+      border-color: tint($primary-color, 50%);
+    }
+  }
+
+  &-disabled {
+    background-color: #e9e9e9;
+
+    .#{$sliderPrefixClass}-track {
+      background-color: $disabledColor;
+    }
+
+    .#{$sliderPrefixClass}-handle, .#{$sliderPrefixClass}-dot {
+      border-color: $disabledColor;
+      background-color: #fff;
+      cursor: not-allowed;
+    }
+
+    .#{$sliderPrefixClass}-mark-text, .#{$sliderPrefixClass}-dot {
+      cursor: not-allowed!important;
+    }
+  }
+}
+
+.#{$indicatorPrefixClass} {
+  height: $indicator-slider-height;
+
+  &-track {
+    height: $indicator-slider-height + $caret-base;
+  }
+
   &-handle {
     position: absolute;
     background-color: black;
     width: 3px;
-    height: $slider-height;
-    cursor: pointer;
+    height: $indicator-slider-height;
+    cursor: default;
     z-index: 5;
     &::before,
     &::after {
@@ -94,6 +159,57 @@ $darkOrange: #B5441D;
       border-right: $caret-base/$caret-side-ratio solid transparent;
       top: 15px;
     }
+    &:hover {
+      border-color: tint($primary-color, 20%);
+    }
+    &-active {
+      &:active {
+        border-color: tint($primary-color, 20%);
+        box-shadow: 0 0 5px tint($primary-color, 20%);
+      }
+    }
+  }
+
+  &-section {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    &-1 {
+      background-color: $darkOrange;
+    }
+    &-2 {
+      background-color: $lightOrange;
+    }
+
+    &-3 {
+      background-color: $darkYellow;
+    }
+
+    &-4 {
+      background-color: $lightYellow;
+    }
+  }
+}
+
+.#{$sliderPrefixClass} {
+  height: $slider-height;
+  background: #f0f0f0;
+
+  &-track {
+    height: $indicator-slider-height + $caret-base;
+  }
+
+  &-handle {
+    $handleDimension: 16px;
+    position: absolute;
+    background-color: black;
+    width: $handleDimension;
+    height: $handleDimension;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 5;
+    top: -5px;
+
     &:hover {
       border-color: tint($primary-color, 20%);
     }
@@ -160,26 +276,26 @@ $darkOrange: #B5441D;
   &-disabled {
     background-color: #e9e9e9;
 
-    .#{$prefixClass}-track {
+    .#{$sliderPrefixClass}-track {
       background-color: $disabledColor;
     }
 
-    .#{$prefixClass}-handle, .#{$prefixClass}-dot {
+    .#{$sliderPrefixClass}-handle, .#{$sliderPrefixClass}-dot {
       border-color: $disabledColor;
       background-color: #fff;
       cursor: not-allowed;
     }
 
-    .#{$prefixClass}-mark-text, .#{$prefixClass}-dot {
+    .#{$sliderPrefixClass}-mark-text, .#{$sliderPrefixClass}-dot {
       cursor: not-allowed!important;
     }
   }
 }
 
-.#{$prefixClass}-vertical {
+.#{$sliderPrefixClass}-vertical {
   width: 4px;
   height: 100%;
-  .#{$prefixClass} {
+  .#{$sliderPrefixClass} {
     &-track {
       bottom: 0;
       width: 4px;
@@ -233,11 +349,11 @@ $darkOrange: #B5441D;
     animation-play-state: paused;
   }
   .#{$className}-enter.#{$className}-enter-active, .#{$className}-appear.#{$className}-appear-active {
-    animation-name: #{"#{keyframeName}In"};
+    animation-name: #{"#{$keyframeName}In"};
     animation-play-state: running;
   }
   .#{$className}-leave.#{$className}-leave-active {
-    animation-name: #{"#{keyframeName}Out"};
+    animation-name: #{"#{$keyframeName}Out"};
     animation-play-state: running;
   }
 }
