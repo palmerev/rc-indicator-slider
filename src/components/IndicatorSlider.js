@@ -7,23 +7,34 @@ export default class IndicatorSlider extends React.Component {
     super()
   }
   render() {
-    if (this.props.colors.length !== this.props.sections) {
+    const {prefixCls, value, colors, sections} = this.props
+    if (colors && colors.length && colors.length !== sections) {
        throw new Error('number of sections and colors must match')
     }
-    let sections = [],
-        colors = this.props.colors,
-        numSections = this.props.sections
-    for(let i = 0; i < numSections; i++) {
-      let style = { backgroundColor: colors[i] }
-      let uniqueClass = 'rc-slider-section-' + i;
-      let classes = classnames({ 'rc-indicator-slider-section': true, uniqueClass })
-      sections.push(
-        <span key={i} className={classes} style={style}></span>
+    let sectionList = []
+    for(let i = 0; i < sections; i++) {
+      let classes = classnames(
+        { [`${prefixCls}-section`]: true, [`${prefixCls}-section-${i+1}`]: true }
       )
+      if (colors) {
+        let style = { backgroundColor: colors[i] }
+        sectionList.push(
+          <span key={i} className={classes} style={style}></span>
+        )
+      }
+      else {
+        sectionList.push(
+          <span key={i} className={classes}></span>
+        )
+      }
     }
     return (
-      <Slider prefixCls="rc-indicator-slider" tipFormatter={null} value={this.props.value}>
-        {sections}
+      <Slider
+        prefixCls={prefixCls}
+        tipFormatter={null}
+        value={value}
+      >
+        {sectionList}
       </Slider>
     )
   }
