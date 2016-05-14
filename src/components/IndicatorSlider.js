@@ -11,23 +11,21 @@ export default class IndicatorSlider extends React.Component {
     if (colors && colors.length && colors.length !== sections) {
        throw new Error('number of sections and colors must match')
     }
-    let sectionList = []
-    for(let i = 0; i < sections; i++) {
-      let classes = classnames(
-        { [`${prefixCls}-section`]: true, [`${prefixCls}-section-${i+1}`]: true }
-      )
-      if (colors) {
-        let style = { backgroundColor: colors[i] }
-        sectionList.push(
-          <span key={i} className={classes} style={style}></span>
-        )
+    let sectionList = Array.from(Array(sections).keys()).map(
+      (sectionNum) => {
+        let classes = classnames({
+            [`${prefixCls}-section`]: true,
+            [`${prefixCls}-section-${i+1}`]: true
+        })
+        if (colors) {
+          let style = { backgroundColor: colors[sectionNum+1] }
+          return (<span key={i} className={classes} style={style}></span>)
+        }
+        else {
+            return (<span key={i} className={classes}></span>)
+        }
       }
-      else {
-        sectionList.push(
-          <span key={i} className={classes}></span>
-        )
-      }
-    }
+    )
     return (
       <Slider
         prefixCls={prefixCls}
