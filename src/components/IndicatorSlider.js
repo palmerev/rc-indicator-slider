@@ -30,13 +30,14 @@ export default class IndicatorSlider extends React.Component {
 }
 
 IndicatorSlider.propTypes = {
+  prefixCls: PropTypes.string,
   sections: PropTypes.number,
   colors: PropTypes.arrayOf(PropTypes.string),
   value: PropTypes.number
 }
 
 IndicatorSlider.defaultProps = {
+  prefixCls: "rc-indicator-slider",
   sections: 4,
-  colors: ["#333", "#666", "#999", "#CCC"],
-  value: 25
+  value: 0
 }
