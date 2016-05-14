@@ -22,11 +22,18 @@ class App extends React.Component {
         <h1>IndicatorSlider test</h1>
         <p>Control Slider</p>
         <div className="slider-wrapper">
-          <Slider defaultValue={this.state.value} onChange={this.handleOnChange} />
+          <Slider
+            defaultValue={this.state.value}
+            onChange={this.handleOnChange}
+          />
         </div>
         <p>IndicatorSlider</p>
         <div className="indicator-wrapper">
-          <IndicatorSlider value={this.state.value} onChange={this.handleOnChange} />
+          <IndicatorSlider
+            value={this.state.value}
+            onChange={this.handleOnChange}
+            prefixCls="rc-indicator-slider"
+          />
         </div>
       </div>
     )
