@@ -15,6 +15,7 @@ export default class IndicatorSlider extends React.Component {
       (sectionNum) => {
         let classes = classnames({
             [`${prefixCls}-section`]: true,
+            // ex: rc-slider-indicator-section-1...section-[sections]
             [`${prefixCls}-section-${sectionNum+1}`]: true
         })
         if (colors) {
@@ -42,11 +43,10 @@ IndicatorSlider.propTypes = {
   prefixCls: PropTypes.string,
   sections: PropTypes.number,
   colors: PropTypes.arrayOf(PropTypes.string),
-  value: PropTypes.number
+  value: PropTypes.number.isRequired
 }
 
 IndicatorSlider.defaultProps = {
   prefixCls: "rc-indicator-slider",
   sections: 4,
-  value: 0
 }
