@@ -15,14 +15,14 @@ export default class IndicatorSlider extends React.Component {
       (sectionNum) => {
         let classes = classnames({
             [`${prefixCls}-section`]: true,
-            [`${prefixCls}-section-${i+1}`]: true
+            [`${prefixCls}-section-${sectionNum+1}`]: true
         })
         if (colors) {
           let style = { backgroundColor: colors[sectionNum+1] }
-          return (<span key={i} className={classes} style={style}></span>)
+          return (<span key={sectionNum} className={classes} style={style}></span>)
         }
         else {
-            return (<span key={i} className={classes}></span>)
+            return (<span key={sectionNum} className={classes}></span>)
         }
       }
     )
