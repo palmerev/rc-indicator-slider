@@ -7,11 +7,16 @@ export default class IndicatorSlider extends React.Component {
     super()
   }
   render() {
+    let numSections = 0;
     const {prefixCls, value, colors, sections} = this.props
-    if (colors && colors.length && colors.length !== sections) {
-       throw new Error('number of sections and colors must match')
+    if (colors && colors.length > 0) {
+      numSections = colors.length
     }
-    let sectionList = Array.from(Array(sections).keys()).map(
+    else if (sections) {
+      numSections = sections
+    }
+
+    let sectionList = Array.from(Array(numSections).keys()).map(
       (sectionNum) => {
         let classes = classnames({
             [`${prefixCls}-section`]: true,
@@ -48,5 +53,4 @@ IndicatorSlider.propTypes = {
 
 IndicatorSlider.defaultProps = {
   prefixCls: "rc-indicator-slider",
-  sections: 4,
 }
