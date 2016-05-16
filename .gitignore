@@ -34,5 +34,3 @@ node_modules
 
 # Styles
 .sass-cache
-*.css
-*.css.map
