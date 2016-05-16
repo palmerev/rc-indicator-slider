@@ -149,13 +149,13 @@ In a real application, you will probably want to render more than just this comp
 
 **The prefixCls prop**
 
-`rc-slider` also defines an undocumented `prefixCls` prop, which is used as the prefix for all class names in the rendered DOM output. By default `rc-slider` sets this to "rc-slider". `rc-indicator-slider` overrides this and sets it to "rc-indicator-slider", generating class names. Pass the `prefixCls` prop if you want to define different class names in your CSS.
+`rc-slider` also defines an undocumented `prefixCls` prop, which is used as the prefix for all class names in the rendered DOM output. By default `rc-slider` sets this to "rc-slider". `rc-indicator-slider` overrides this and sets it to "rc-indicator-slider". Passing the `prefixCls` prop is useful if you want to define different class names in your CSS.
 
 `rc-indicator-slider` will render an `rc-slider` with the following changes to props:
 
 - `rc-slider`'s `props.tipFormatter` will be `null` (no tooltip will be displayed)
 - `rc-slider`'s `props.children` will be populated with `<span>` elements based on the value of the 'sections' prop (see [Children](#children) section below)
-- You should prefer applying styles using CSS classes (see the generate4d class names below), but inline background-color styles can be defined for each section, if desired. Pass a `colors` prop with an array of CSS color values as strings, and these will be applied to each section's backgroundColor property in the order they are given.
+- You should prefer applying styles using CSS classes (see the generated class names below), but inline background-color styles can be defined for each section, if desired. Pass a `colors` prop with an array of CSS color values as strings, and these will be applied to each section's backgroundColor property in the order they are given.
 
 ## Children
 
@@ -171,13 +171,11 @@ In a real application, you will probably want to render more than just this comp
 </Slider>
 ```
 
-Each child will be a `<span>` element.
-
 **Number of children**
 
-The component will use the length of the `colors` array, if it is defined and contains at least one item. Otherwise, it will fall back to using the `sections` prop.
+The number of children will be determined by the length of the `colors` array, if it is defined and contains at least one item. Otherwise, it will fall back to using the `sections` prop. Thus, you must pass either `colors` or `sections`, but if you pass both, the length of `colors` will be used. If you pass neither, no children will be generated.
 
-**Generated child class names**
+**Child elements' class names**
 
 The generated child elements will have class names `prefixCls-section` and `prefixCls-section-i`, where `prefixCls` is the value of the `prefixCls` prop and `i` is a number between 1 and the number of children, (incremented for each element). With the default `prefixCls` and `sections={4}`:
 
@@ -189,12 +187,6 @@ The generated child elements will have class names `prefixCls-section` and `pref
   <span class="rc-indicator-slider-section rc-indicator-slider-section-3"></span>
   <span class="rc-indicator-slider-section rc-indicator-slider-section-4"></span>
 </div>
-```
-
-If the `colors` prop is passed, each color is added to the `style` attribute of the element
-
-```html
-<span style="background-color: rgb(239, 94, 63);" ...></span>
 ```
 
 ## Rendered output
@@ -223,3 +215,13 @@ renders to:
   <span class="rc-indicator-slider-section rc-indicator-slider-section-4"></span>
 </div>
 ```
+
+If the `colors` prop is passed, each color is added to the `style` attribute of the `<span>` elements
+
+```html
+<span style="background-color: rgb(239, 94, 63);" ...></span>
+```
+
+
+
+Licensed under the MIT license.
