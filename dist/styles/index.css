@@ -102,7 +102,7 @@
       content: "";
       position: relative;
       display: block;
-      left: -5px;
+      left: -4px;
       z-index: 5; }
     .rc-indicator-slider-handle::before {
       border-top: 8px solid black;
@@ -136,7 +136,7 @@
   height: 5px;
   background: #f0f0f0; }
   .rc-slider-track {
-    height: 33px; }
+    height: 5px; }
   .rc-slider-handle {
     position: absolute;
     background-color: black;
@@ -307,5 +307,15 @@
     margin-left: -4px;
     border-width: 4px 4px 0;
     border-top-color: tint(#666, 4%); }
+
+/* EXTRA DEMO STYLES */
+.demo-root {
+  font-family: sans-serif; }
+  .demo-root h1 {
+    text-align: center; }
+  .demo-root p {
+    margin-left: 50px; }
+  .demo-root p.description {
+    margin-top: 2em; }
 
 /*# sourceMappingURL=index.css.map */
