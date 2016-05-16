@@ -19,8 +19,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>IndicatorSlider test</h1>
-        <p>Control Slider</p>
+        <h1>IndicatorSlider demo</h1>
+        <p>Control component: rc-slider testing</p>
         <div className="slider-wrapper">
           <Slider
             defaultValue={this.state.value}
@@ -31,8 +31,8 @@ class App extends React.Component {
         <div className="indicator-wrapper">
           <IndicatorSlider
             value={this.state.value}
-            onChange={this.handleOnChange}
             prefixCls="rc-indicator-slider"
+            sections={4}
           />
         </div>
       </div>
