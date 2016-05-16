@@ -18,9 +18,9 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>IndicatorSlider demo</h1>
-        <p>Control component: rc-slider testing</p>
+      <div className="demo-root">
+        <h1>rc-indicator-slider Demo</h1>
+        <p>Control component: rc-slider</p>
         <div className="slider-wrapper">
           <Slider
             defaultValue={this.state.value}
@@ -35,6 +35,7 @@ class App extends React.Component {
             sections={4}
           />
         </div>
+        <p className="description">All styles are defined in index.(s)css. The stylesheet is based on the one provided with rc-slider.</p>
       </div>
     )
   }
