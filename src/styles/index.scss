@@ -196,7 +196,7 @@ $darkOrange: #B5441D;
   background: #f0f0f0;
 
   &-track {
-    height: $indicator-slider-height + $caret-base;
+    height: $slider-height;
   }
 
   &-handle {
@@ -439,5 +439,19 @@ $darkOrange: #B5441D;
     margin-left: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
     border-top-color: $tooltip-arrow-color;
+  }
+}
+
+/* EXTRA DEMO STYLES */
+.demo-root {
+  font-family: sans-serif;
+  h1 {
+    text-align: center;
+  }
+  p {
+    margin-left: 50px;
+  }
+  p.description {
+    margin-top: 2em;
   }
 }
