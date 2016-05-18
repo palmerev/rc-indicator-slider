@@ -222,6 +222,28 @@ If the `colors` prop is passed, each color is added to the `style` attribute of 
 <span style="background-color: rgb(239, 94, 63);" ...></span>
 ```
 
+### Style examples
+
+With the HTML output from above, it's easy to style each `<span>` through CSS:
+
+```css
+rc-indicator-slider-section {
+  height:20px;
+  width: 25%;
+}
+rc-indicator-slider-section-1 {
+  background-color: #b5441d;
+}
+rc-indicator-slider-section-2 {
+  background-color: #dc6632;
+}
+rc-indicator-slider-section-3 {
+  background-color: #eadd69;
+}
+rc-indicator-slider-section-4 {
+  background-color: #eee597;
+}
+```
 
 
 Licensed under the MIT license.
